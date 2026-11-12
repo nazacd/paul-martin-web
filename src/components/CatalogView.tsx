@@ -89,6 +89,14 @@ export function CatalogView() {
   const [sort, setSort] = useState<Sort>("default");
   const [cols, setCols] = useState<2 | 3 | 4>(4);
 
+  // Фильтры по цвету и размеру сбрасываются при смене раздела — с вкладок, из меню или подвала
+  const [lastFilter, setLastFilter] = useState(filter);
+  if (lastFilter !== filter) {
+    setLastFilter(filter);
+    setColorSel([]);
+    setSizeSel([]);
+  }
+
   useEffect(() => {
     try {
       const saved = Number(window.localStorage.getItem(VIEW_KEY));
@@ -138,7 +146,6 @@ export function CatalogView() {
     setSizeSel([]);
   };
   const setFilter = (f: Filter) => {
-    reset();
     router.replace(href(locale, f === "all" ? "/catalog/" : `/catalog/?c=${f}`), { scroll: false });
   };
 
