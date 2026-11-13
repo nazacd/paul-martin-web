@@ -58,7 +58,7 @@ function MenuDrawer() {
     { label: t.nav.favorites, path: "/favorites/" },
   ];
   return (
-    <Drawer open={panel === "menu"} side="left" title={<Logo className="items-start" />} onClose={close} closeLabel={t.nav.close}>
+    <Drawer open={panel === "menu"} side="left" title={<Logo />} onClose={close} closeLabel={t.nav.close}>
       <nav className="px-5 py-6" aria-label={t.nav.menu}>
         <ul>
           {links.map((item) => (
